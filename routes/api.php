@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\API\TeacherController;
+use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\EnrollmentController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -23,4 +25,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('students', StudentController::class);
     //teacher
     Route::apiResource('teachers', TeacherController::class);
+    //course
+    Route::apiResource('courses', CourseController::class);
+    //enrollment
+    Route::post('/enroll', [EnrollmentController::class, 'enroll']);
+    Route::post('/unenroll', [EnrollmentController::class, 'unenroll']);
 });
